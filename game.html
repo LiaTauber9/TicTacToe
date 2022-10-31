@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <section id="scoreSec">
+        <div id="bearBoard" class="board">
+            <img id="bearImg" src="./png/panda.png">
+            <p class="bearTxt">I want to eat your coockies...!</p>
+        </div>
+        <div class="scoreBox" id="scoreBox1">
+            <div class="name" id="name1">Player 1 - X</div>
+            <div class="score" id="score1">Score:  <span> 0</span></div>
+        </div>
+        <div class="scoreBox" id="scoreBox2">
+            <div class="name" id="name2">Player 2 - O</div>
+            <div class="score" id="score2">You have:  <span> 0</span>coockies</div>
+        </div>
+    </section>
+    <section id="gameSec">
+        <div id="board"></div>
+        <!-- set css ??????? -->
+        <div id="tieBoard" class="board" style="display: none;">
+            <p id="tieMessage" style="color: white; font-size: 50px; margin: 0px; margin-bottom: 20px;">IT'S A TIE!</p>
+            <P id="tieInstraction">You have to win the battle to get an extra coockie</P>
+            <img id="tieImg" src="./png/tie.png" style= "margin: auto; width: 10vw;">
+            <button id="tieBtn" onclick="onclicktie()">COOCKIE BATTLE</button>
+        </div>
+        
+        <div id="winBoard" class="board" style="display: none;">
+            <button id="startNewGame" onclick=window.location.reload() disabled>PLAY AGAIN</button>
+            <button id="goToExercise" onclick= window.location.href="exercise.html">BAKE A COOCKIE</button> 
+        </div>
+    </section>
+    <script src="game.js"></script>
+</body>
+</html>

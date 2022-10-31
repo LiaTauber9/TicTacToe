@@ -1,0 +1,153 @@
+html *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background-image: url(./png/bg8.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    font-family: 'Indie Flower', cursive;
+    display: flex;
+    color: white;
+}
+#gameSec{
+  width: 65vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: start;  
+}
+#scoreSec{
+    width: 35vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+.board{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid;
+    border-color: rgba(255,255,255, 1); 
+    justify-content: space-around;
+}
+
+#bearBoard{
+    justify-content: space-between;
+    width: 20rem;
+    height: 20rem;
+}
+.bearTxt{
+    font-size: 1em;
+    transition: 4s;
+}
+#bearImg{
+    width: 19rem;
+}
+#scoreBox1{
+    display: none;
+}
+.scoreBox{
+    border: 3px solid;
+    border-color: rgba(255,255,255, 1);
+    transition: 2s;
+    width: 20rem;
+    height: 7rem;
+    text-align: center;
+}
+.name, .score{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+.name{
+    border-bottom: 1px solid white;
+    height: 3rem;
+}
+.score{
+    height: 4rem;
+}
+.score span{
+    padding: 0 1rem;
+}
+#board{
+    width: 35vw;
+    height: 35vw;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3,1fr);
+}
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.simbolImg{
+    width: 80%;
+    /* height: 80%; */
+}
+#cell0 , #cell1, #cell3, #cell4{
+    border-right: 5px solid white;
+    border-bottom: 5px solid white;
+}
+#cell2, #cell5{
+    border-bottom: 5px solid white;
+}
+#cell6, #cell7{
+    border-right: 5px solid white;
+}
+
+.biggerFont{
+    animation: biggerFont 6s infinite;
+}
+@keyframes biggerFont{
+    0%{
+        font-size: 0.8em;
+    }
+    80%{
+        font-size: 1.3em;
+    }
+    100%{
+        font-size: 0.8em;
+    }
+} 
+.flicker{
+    animation: flicker 3s infinite;
+}
+@keyframes flicker {
+    0% {
+        border: 7px solid rgba(255,255,255, 1);
+        padding: 0;
+    }
+    50% {
+        border: 3px solid rgba(255,255,255, 0.1);
+        padding: 4px;
+    }
+
+    100% {
+        border: 7px solid rgba(255,255,255, 1);
+        padding: 0;
+    }
+}
+.txtFlicker{
+    animation: txtFlicker 1.5s infinite;
+}
+@keyframes txtFlicker{
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 1;
+    }
+}
