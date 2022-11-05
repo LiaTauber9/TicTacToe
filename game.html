@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
     <link rel="stylesheet" href="game.css">
 </head>
@@ -25,16 +26,17 @@
     <section id="gameSec">
         <div id="board"></div>
         <!-- set css ??????? -->
-        <div id="tieBoard" class="board" style="display: none;">
-            <p id="tieMessage" style="color: white; font-size: 50px; margin: 0px; margin-bottom: 20px;">IT'S A TIE!</p>
+        <div id="tieBoard" class="board resultMessage" style="display: none;">
+            <p id="tieMessage">IT'S A TIE!</p>
             <P id="tieInstraction">You have to win the battle to get an extra coockie</P>
-            <img id="tieImg" src="./png/tie.png" style= "margin: auto; width: 10vw;">
-            <button id="tieBtn" onclick="onclicktie()">COOCKIE BATTLE</button>
+            <img id="tieImg" src="./png/tie.png">
+            <button id="tieBtn" class="btn" onclick= "window.location.href = 'timer2.html'">COOCKIE - BATTLE</button>
         </div>
-        
-        <div id="winBoard" class="board" style="display: none;">
-            <button id="startNewGame" onclick=window.location.reload() disabled>PLAY AGAIN</button>
-            <button id="goToExercise" onclick= window.location.href="exercise.html">BAKE A COOCKIE</button> 
+
+        <div id="boardNext" class="board resultMessage" style="display: none;">
+            <p id="mesageNext">You have enough coockies, you can go to exercise for more or play again</p>
+            <button id="startNewGame" class="btn" onclick=window.location.reload() disabled>PLAY AGAIN</button>
+            <button id="goToExercise" class="btn" onclick= window.location.href="exercise.html">BAKE A COOCKIE</button> 
         </div>
     </section>
     <script src="game.js"></script>

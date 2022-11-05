@@ -3,7 +3,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
     background-position: right;
-    font-family: 'Indie Flower', cursive;
+    /* font-family: 'Indie Flower', cursive; */
+    font-family: sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,15 +15,26 @@ body{
 form{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 2rem;
 }
-#enterGame{
-    margin-top: 1rem;
-    border: 5px solid white;
-    border-radius: 5px;
-    background: none;
-    color: white;
+.formElem{
+    width: 15rem;
+    height: 2rem;
+    font-size: 1.5rem;
 }
+
 form :nth-child(3), form :nth-child(4){
     display: none;
+}
+.btn{
+    width: 10rem;
+    height: 2rem;
+    border: 3px solid  #414040;
+    background-color: white;
+    color: #414040;
+    border-radius: 5px;
+    font-family: 'Indie Flower', cursive;
+    justify-content: center;
+    align-items: center;
 }

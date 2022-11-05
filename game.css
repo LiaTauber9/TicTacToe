@@ -37,6 +37,15 @@ body{
     border-color: rgba(255,255,255, 1); 
     justify-content: space-around;
 }
+.btn{
+    width: 10rem;
+    height: 2rem;
+    border: 3px solid  #414040;
+    background-color: white;
+    color: #414040;
+    border-radius: 5px;
+    font-family: 'Indie Flower', cursive;
+}
 
 #bearBoard{
     justify-content: space-between;
@@ -92,6 +101,7 @@ body{
 }
 .simbolImg{
     width: 80%;
+    transition: 10s;
     /* height: 80%; */
 }
 #cell0 , #cell1, #cell3, #cell4{
@@ -150,4 +160,12 @@ body{
     100%{
         opacity: 1;
     }
+}
+
+.resultMessage{
+    height: 35rem;
+    width: 20rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
 }

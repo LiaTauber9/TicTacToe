@@ -5,10 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" 
+    />              
     <link rel="stylesheet" href="exercise.css">
 </head>
 <body>
-    <p>Exercise</p>
+    <div id="exercise" class="container">
+        <p id="num1" class="exP">3</p>
+        <p id="operator" class="exP">X</p>
+        <p id="num2" class="exP">4</p>
+        <p id="equal" class="exP">=</p>
+        <input type="text" id="answer" class="exP" onkeydown="enableCheck()"> 
+        <p id="check" class="exP" style="background-color: yellow;" onclick="check()">CHECK</p>
+        
+    </div>
+    <div id="result">
+        <p id="resultMessage" style="display: none;">Well done <span id="name"></span>!, You have now <span id="coockiesSum"></span> coockies</p>
+        <!-- <p id="whatsNext">You don't have enough cookies for game. Do more exercise to get a cookie</p> -->
+        <div class="container">
+            <button id="bakeMoreBtn" class="btn" style="display: none;" onclick="setExercise()">Bake again...</button>
+            <button id="playGameBtn" class="btn" style="display: none;" onclick=" goToGame()">Let's play</button>
+        </div>
+
+        
+    </div>
     <script src="exercise.js"></script>
 </body>
-</html>
+</html>          

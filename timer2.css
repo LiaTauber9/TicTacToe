@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+body{
+    background: linear-gradient(to bottom, rgba(100, 100, 100, 0.2) 0%, rgba(255, 255, 255, 0.5) 40%, #ffffff 100%);
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.egg {
+  cursor: -webkit-grab; cursor: -moz-grab;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  display: inline-block;
+  float: left;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 80% 80% 65% 65%;
+  position: relative;
+  background: radial-gradient(circle at 50% 120%, #7C8280, #BBBBBB 10%, #BBBBBB 80%, #CECECE 100%);
+}
+.egg:before {
+  content: "";
+  position: fixed;
+  top: 1%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 0px, #ffffff, rgba(255, 255, 255, 0) 58%);
+  -webkit-filter: blur(5px);
+  z-index: 2;
+}
+
+.egg .shadow {
+bottom: -10px;
+position: fixed;
+width: 100%;
+height: 100%;
+background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
+transform: rotateX(75deg) translateZ(-150px);
+z-index: -1;
+}
+.stage {
+  width: 260px;
+  height: 300px;
+  display: inline-block;
+  margin: 20px;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+#timerContainer{
+  width: 300px;
+  margin: 20% auto;
+  margin: 10rem 3rem;
+}
+
+.triangle {
+    position: fixed;
+    width: 0;
+    height: 0;
+    border-bottom: 20px solid #323031;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    top: 210px;
+    left: 80px;
+}
+.line{
+  position: fixed;
+  width:260px; height:50px;  
+  border:solid 5px #000;
+  border-color: transparent #000 #000 #000;
+  border-radius:  150%/0 0 40px 40px;
+  border-style:hidden hidden groove hidden;
+  top: 150px;
+  left: -38px;
+}
+
+.timer {
+  font-family: inconsolata;
+  font-size: 18px;
+  display: inline-block;
+  text-indent: 8px;
+  position: relative;  
+  padding-top:85px;
+  height: 100px;
+  width: 260px;
+  white-space: nowrap;
+  top: 100px;
+
+}
+
+::-webkit-scrollbar { 
+    display: none; 
+}
+
+
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: moz-none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#exerciseSec{
+    width: 40vw;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border: 5px solid  #323031;
+    margin-right: 5rem;
+    background: linear-gradient(to bottom, rgba(100, 100, 100, 0.2) 40%, rgba(255, 255, 255, 0.5) 99%, #ffffff 100%);
+    background-repeat: no-repeat;
+}
+
+.exBox, .exElem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.exBox{
+    width: 32rem;
+    height: 4rem;
+    gap: 0.8rem;
+    
+}
+.exElem{
+    border: 2px solid white;
+    height: 3rem;
+    width: 2.7rem;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 3px 3px  #323031;
+    font-family: inconsolata;
+    font-size: 1.8rem;
+    
+    /* border-bottom: 3px solid #323031;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;;    */
+}
+
+input{
+    font-size: 1rem;
+    text-align: center;
+}
+#result{
+    position: absolute;
+    bottom: 3rem;
+    left: 3rem;
+    width: 28vw;
+    height: 10vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: white;
+    color: red;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    display: flex;
+}
+
+.btn{
+    /* position: absolute;
+    bottom: 2rem; */
+    width: 10rem;
+    height: 2rem;
+    border: 3px solid  #414040;
+    background-color: white;
+    color: #414040;
+    border-radius: 5px;
+    font-family: 'Indie Flower', cursive;
+}
+
+
+.v{
+    color: #35f35b;
+    border-color: #35f35b;
+}
+
+.x{
+    color: red;
+    border-color: red;
+}
+
+.x, .v{
+    font-size: 2rem;
+}

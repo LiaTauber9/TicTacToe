@@ -1,0 +1,88 @@
+body{
+    background-image: url(./png/2222.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right;
+    font-family: 'Indie Flower', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    height: 100vh;
+    gap: 1rem;
+}
+body *{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.btn{
+    width: 10rem;
+    height: 2rem;
+    border: 3px solid  #414040;
+    background-color: white;
+    color: #414040;
+    border-radius: 5px;
+    font-family: 'Indie Flower', cursive;
+}
+.container{
+    display: flex;
+    width: 80vw;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    font-size: medium;
+}
+#result{
+    position: absolute;
+    bottom: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.exP{
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: #414040;
+    border-radius: 50%;
+}
+input{
+    text-align: center;
+    /* width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: none; */
+    font-family: 'Indie Flower', cursive;
+    font-size: medium;
+}
+#result p{
+    font-size: 1.5rem;
+    color: red;
+    background-color: white;
+    padding: 0.5rem;
+}
+.fa-v{
+    color:#35f35b;
+    display: none; 
+}
+span{
+    margin: 0 5px;
+}
+.btn{
+    width: 10rem;
+    height: 2rem;
+    border: 3px solid  #414040;
+    background-color: white;
+    color: #414040;
+    border-radius: 5px;
+    font-family: 'Indie Flower', cursive;
+    justify-content: center;
+    align-items: center;
+}

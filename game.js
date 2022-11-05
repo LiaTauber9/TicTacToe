@@ -4,8 +4,9 @@ let pathList = ['./png/o1.png', './png/o2.png', './png/o3.png', './png/o4.png', 
 let pathPos = 0;
 let host = JSON.parse(localStorage.getItem('host'));
 let guest = JSON.parse(localStorage.getItem('guest'));
-let isSingle = host.name == 'The Bear';
+let isSingle = host.name === 'The Bear';
 let currentPlayerSimbol = '';
+let currentPlayer;
 let playerX;
 let playerO;
 let emptyCells;
@@ -33,6 +34,7 @@ function initGame() {
     //set player name and score
     document.getElementById('name2').textContent = guest.name;
     guestScore.textContent = guest.score;
+    hostScore.textContent = host.score;
     //reset variabls
     playerX = [];
     playerO = [];
@@ -40,12 +42,13 @@ function initGame() {
     emptyCells = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     turns = 0;
     currentPlayerSimbol = (Math.round(Math.random())) > 0 ? 'x' : 'o';
-    currentPlayer();
+    setCurrentPlayer();
     console.log(currentPlayerSimbol);
 }
 
 // change player
-function currentPlayer() {
+function setCurrentPlayer() {
+    currentPlayer = currentPlayerSimbol =='x' ? host : guest;
     currentPlayerAnim = setInterval(flicker);
     addScoreTextAnim();
     previousPlayer();
@@ -120,8 +123,12 @@ function clickCell() {
         for (i of emptyCells) {
             document.getElementById('cell' + i).removeEventListener('click', click)
         }
-        endGame(currentPlayerSimbol);
-        console.log(currentPlayerSimbol + ' won')
+        setTimeout(winAnim, 1000, ()=> {
+            endGame(currentPlayerSimbol);
+        }) 
+        winScoreSum();
+        // endGame(currentPlayerSimbol);
+        console.log(currentPlayerSimbol + ' won');
 
     } else {
         console.log('no winner yet');
@@ -130,11 +137,8 @@ function clickCell() {
         if (turns < 9) {
             changePlayer();
         } else {
-            // currentPlayerSimbol = (currentPlayerSimbol == 'x') ? 'o' : 'x';
-            // removeScoreTextAnim(); 
-            // clearInterval(currentPlayerAnim);
-            // console.log('its a tie');
-            endGame('t')
+            setTimeout(endGame,1000, 't');
+            // endGame('t')
         }
         // turns < 9 ? changePlayer() :  // endGame('t') !!!!!!!
     }
@@ -178,39 +182,49 @@ function checkResult() {
 
 function changePlayer() {
     currentPlayerSimbol = (currentPlayerSimbol == 'x') ? 'o' : 'x';
-    currentPlayer();
+    setCurrentPlayer();
 }
 
 // auto player - choose cell and click
 function autoPlayTurn() {
     console.log('entered autoPlayTurn');
     let element;
-    if (isWinIndex('x')) {
-        element = document.getElementById('cell' + isWinIndex('x'))
-    } else if (isWinIndex('o')) {
-        element = document.getElementById('cell' + isWinIndex('o'))
+    let winIndex = isWinIndex('x');
+    console.log(winIndex);
+    if (winIndex >= 0) {
+        element = document.getElementById('cell' + winIndex);
     } else {
-        const index = emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        console.log(index);
-        element = document.getElementById('cell' + index)
+        winIndex = isWinIndex('o');
+        console.log(winIndex);
+        if (winIndex >= 0) {
+            element = document.getElementById('cell' + winIndex);
+        } else {
+            const index = emptyCells[Math.floor(Math.random() * emptyCells.length)];
+            console.log(index);
+            element = document.getElementById('cell' + index)
+        }
     }
     console.log(element);
     clickedCell = element;
-    setTimeout(clickCell, 2000)
+    setTimeout(clickCell, 1000)
 }
 
 function isWinIndex(simbole) {
     const playerClickedList = simbole == 'x' ? playerX : playerO;
     for (i of winArr) {
         const included = i.filter(num => playerClickedList.includes(num));
+
         if (included.length > 1) {
+            console.log('2 index with option of win' + included);
             const winIndex = i.filter(num => included.includes(num) == false);
+            console.log('index for win is: ' + winIndex + 'empty cells are: ' + emptyCells);
             if (emptyCells.includes(winIndex[0])) {
                 return winIndex[0]
+                console.log('return win index' + winIndex[0]);
             }
         }
     }
-    return false;
+    return -1;
 }
 
 // when game ends:
@@ -218,43 +232,100 @@ function endGame(symbol) {
     document.getElementById('board').remove();
     if (symbol != 't') {
         // creat win animation    ?????
-        const isEnough = isEnoughCoockis()
+        winScoreSum();
         localStorage.setItem('host', JSON.stringify({ name: host.name, score: host.score, symbol: 'x' }));
         localStorage.setItem('guest', JSON.stringify({ name: guest.name, score: guest.score, symbol: 'o' }));
-        document.getElementById('winBoard').style.display = 'flex'
-        if(isEnough == 'both'){
-            document.getElementById("startNewGame").disabled = false;
-        }
-
+        document.getElementById('boardNext').style.display = 'flex'
+        guestScore.textContent = guest.score;
+        hostScore.textContent = host.score;
+        endGameNext()
+       
     } else {
-        document.getElementById("resultBoard").style = 'display: flex; ';
+        document.getElementById("tieBoard").style = 'display: flex; ';
     }
-
 }
 
 function winScoreSum() {
     if (currentPlayerSimbol == 'x') {
-        host.score += guestScore.textContent;
-        guest.score = guestScore.textContent;
+        host.score += playerO.length;
+        guest.score = guestScore.textContent*1;
     } else {
-        guest.score += hostScore.textContent;
-        host.score = hostScore.textContent;
+        guest.score += playerX.length;
+        host.score = hostScore.textContent*1;
     }
 }
 
 //moving to the next game
-function onclickNext() {
+function endGameNext() {
     const isEnough = isEnoughCoockis()
-    if (isEnough == 'guest' || isEnough == 'host') {
-        askToBake(isEnough)
+    console.log('isEnoughCoockies return: ' + isEnough);
+    if (isEnough == 'enough') {
+        document.getElementById("startNewGame").disabled = false;
     } else {
-        window.location.reload()
+        const baker = isEnough == 'guest' || 'both' ? 'guest' : 'host';
+        const bakerObj = isEnough == 'guest' || 'both' ? guest : host;
+        localStorage.setItem('baker', baker)
+        document.getElementById('mesageNext').textContent = `${bakerObj.name} you don't have enough coockies for the game, you have to bake some more..`
     }
 }
 
 function isEnoughCoockis() {
     return guest.score < 5 && host.score < 5 ? 'both' : guest.score < 5 ? 'guest' : host.score < 5 ? 'host' : 'enough'
 }
+
+function onclickTie() {
+    window.location.href = 'exercise.html'
+}
+ // animation whem a player wins
+
+ function winAnim(onDone){
+    const scoreElem = document.querySelector( 
+        currentPlayerSimbol === 'o' ? '#score2 span' : isSingle ?  '#bearImg' : '#score1 span').getBoundingClientRect();
+         const imgElemArr = document.getElementsByClassName('simbolImg');
+        const targetX = scoreElem.left + (scoreElem.width/2)
+        const targetY = scoreElem.top + (scoreElem.height/2)
+        let index = 0;
+         for(let i of imgElemArr){
+            index ++;
+            const elem = i.getBoundingClientRect();
+            const startX = Number(elem.left) +(elem.width/2);
+            const startY = Number(elem.top) +(elem.height/2);
+            const x = (startX-targetX)*(-1);
+            const y = (startY-targetY)*(-1);    
+            i.animate([ 
+                {transform: `scale(1) translateX(0px) translateY(0px)`} ,      
+               {transform: `rotate(0deg) scale(1) translateX(${x}px) translateY(${y}px)`}
+                // {transform: `scale(0) translateX(-1500px) translateY(0px)`}
+            ],
+            {
+                duration: 1000,
+                'fill': 'forwards',
+                composite : 'add'
+                // iteration: 1
+            }).onfinish = () => {
+                i.animate([ 
+                    {transform: `scale(1) rotate(0)`} ,      
+                   {transform: `scale(0) rotate(360deg)`}
+                    // {transform: `scale(0) translateX(-1500px) translateY(0px)`}
+                ],
+                {
+                    duration: 1500,
+                    'fill': 'forwards',
+                    composite: "add"
+                    // iteration: 1
+                }).onfinish = () => {
+                   index--;
+                   if(index == 0) {
+                    onDone();
+                   }
+                } 
+            };
+         }         
+ }
+
+
+
+
 
 
 
@@ -278,7 +349,3 @@ function isEnoughCoockis() {
 
 
 initGame();
-
-
-
-
