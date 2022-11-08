@@ -76,7 +76,7 @@ egg.addEventListener('mousedown', stopDefAction);
 
 let baker = localStorage.getItem('baker');
 bakerObj = JSON.parse(localStorage.getItem(baker));
-let score = bakerObj.score * 1;
+// let score = bakerObj.score * 1; // this line was generating your game to stop
 let exBoard = document.getElementById('exerciseSec');
 let exArray = [];
 

@@ -1,0 +1,16 @@
+
+
+Hello Lia this is your Hackaton review. 
+I really enjoyed your project and was sad to find that there was no more games. I enjoyed the tic tac toe and was able
+to steal the cookiees from the panda. Really liked the first screen style. In the future you will be able to 
+manage this variables from one file in to other in an easy way when using react.
+Some of your features werent working completly correct like the 2 inputs to put the answers in the time html 
+only was able to fill the number in one of them. if the idea is to only use one input so then the other need to go
+beacuse is confusing.
+
+There is also very well implementation of event listeners and DOM manipulation. Liked a lot the timer feature.
+even if does not work 100% good. Keep working in this project that is a one that you can add to your prtfolio.
+
+Congratulations you did a very good job.
+
+
